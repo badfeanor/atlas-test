@@ -24,10 +24,9 @@ RUN cd /tmp \
     && tar -xzvf /tmp/atlas-src/distro/target/apache-atlas-${VERSION}-server.tar.gz -C /opt \
     && rm -Rf /tmp/atlas-src
 
-COPY atlas-application.properties /opt/apache-atlas-${VERSION}/conf
+COPY atlas-application.properties atlas-env.sh /opt/apache-atlas-${VERSION}/conf/
 COPY entrypoint.sh /opt/apache-atlas-${VERSION}/bin
 COPY atlas-env.sh /opt/apache-atlas-${VERSION}/conf
-COPY atlas_start.py.patch atlas_config.py.patch /opt/apache-atlas-${VERSION}/bin/
 
 RUN cd /opt/apache-atlas-${VERSION}/bin \
     && ./atlas_start.py -setup || true
