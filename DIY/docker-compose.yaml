@@ -1,0 +1,31 @@
+version: '3'
+services:
+    atlas:
+        depends_on:
+            - cassandra
+            - elasticsearch
+        build: .
+        image: "atlas-serv"
+        ports:
+            - "21000:21000"
+    cassandra:
+        image: "cassandra:3.11"
+        ports:
+            - "9160:9160"
+            - "9042:9042"
+            - "7199:7199"
+            - "7001:7001"
+        environment:
+            - CASSANDRA_START_RPC=true
+            - CASSANDRA_AUTHENTICATOR=AllowAllAuthenticator
+            - CASSANDRA_AUTHORIZER=AllowAllAuthorizer
+            
+    elasticsearch:
+        image: "docker.elastic.co/elasticsearch/elasticsearch:5.6.4"
+        ports:
+            - "9200:9200"
+        environment:
+            - xpack.security.enabled=false
+            - discovery.type=single-node
+            - cluster.name=JanusGraph
+    
