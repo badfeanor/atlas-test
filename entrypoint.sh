@@ -3,7 +3,7 @@ echo "!!!!!!!! Check Elasticsearch for available !!!!!!!!"
 
 until curl http://"elasticsearch":"9200"; do
     echo "Elasticsearch is unavailable - sleeping"
-    sleep 30
+    sleep 35
 done
 
 echo "Elasticsearch is up - executing command"
