@@ -4,8 +4,7 @@ services:
         depends_on:
             - cassandra
             - elasticsearch
-        build: .
-        image: "atlas-serv"
+        image: "badfeanor/atlas-serv"
         ports:
             - "21000:21000"
     cassandra:
